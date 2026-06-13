@@ -1,5 +1,18 @@
 package modelo;
 
-public class Mortifago extends Personaje {
+public abstract class Mortifago extends Personaje {
 
+    public Mortifago(String nombre, int nivelMagia, int puntosVida) {
+        super(nombre, nivelMagia, puntosVida);
+    }
+
+    @Override
+    public int modificarDanioAtaque(int danioBase) {
+        return danioBase + getNivelMagia() * 2;
+    }
+
+    @Override
+    public int modificarCuracion(int curacionBase) {
+        return curacionBase;
+    }
 }
