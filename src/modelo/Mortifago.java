@@ -15,4 +15,9 @@ public abstract class Mortifago extends Personaje {
     public int modificarCuracion(int curacionBase) {
         return curacionBase;
     }
+
+    @Override
+    public int modificarDefensa(int defensaBase) {
+        return defensaBase + getNivelMagia();
+    }
 }

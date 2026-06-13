@@ -9,6 +9,9 @@ public abstract class Personaje {
     private int nivelMagia;
     private int puntosVida;
     private int vidaMaxima;
+    private int defensa;
+	private boolean sangrando;
+	private int danioSangrado;
     private List<Hechizo> hechizos;
 
     public Personaje(String nombre, int nivelMagia, int puntosVida) {
@@ -16,7 +19,10 @@ public abstract class Personaje {
         this.nivelMagia = nivelMagia;
         this.puntosVida = puntosVida;
         this.vidaMaxima = puntosVida;
+        this.defensa = 0;
         this.hechizos = new ArrayList<>();
+		this.sangrando = false;
+		this.danioSangrado = 0;
     }
 
     public String getNombre() {
@@ -31,6 +37,10 @@ public abstract class Personaje {
         return puntosVida;
     }
 
+    public int getDefensa() {
+        return defensa;
+    }
+
     public boolean estaVivo() {
         return puntosVida > 0;
     }
@@ -43,12 +53,47 @@ public abstract class Personaje {
         return hechizos;
     }
 
-    public void recibirDanio(int danio) {
-        puntosVida -= danio;
+    public void aumentarDefensa(int cantidad) {
+        defensa += cantidad;
+        System.out.println(nombre + " aumenta su defensa en " + cantidad + ". Defensa actual: " + defensa);
+    }
+	
+	public void aplicarSangrado(int danio) {
+    sangrando = true;
+    danioSangrado = danio;
+
+    System.out.println(nombre + " comienza a sangrar.");
+	}
+
+	public void procesarEfectos() {
+    if (sangrando && estaVivo()) {
+        puntosVida -= danioSangrado;
 
         if (puntosVida < 0) {
             puntosVida = 0;
         }
+
+        System.out.println(nombre + " sufre " + danioSangrado +
+                " de daño por sangrado. Vida actual: " + puntosVida);
+    }
+	}
+
+    public void recibirDanio(int danio) {
+        int danioFinal = danio - defensa;
+
+        if (danioFinal < 0) {
+            danioFinal = 0;
+        }
+
+        puntosVida -= danioFinal;
+
+        if (puntosVida < 0) {
+            puntosVida = 0;
+        }
+
+        defensa = 0;
+
+        System.out.println(nombre + " recibe " + danioFinal + " de daño. Vida actual: " + puntosVida);
     }
 
     public void curar(int cantidad) {
@@ -57,6 +102,8 @@ public abstract class Personaje {
         if (puntosVida > vidaMaxima) {
             puntosVida = vidaMaxima;
         }
+
+        System.out.println(nombre + " recupera " + cantidad + " de vida. Vida actual: " + puntosVida);
     }
 
     public void lanzarHechizo(Hechizo hechizo, Personaje objetivo) {
@@ -71,4 +118,6 @@ public abstract class Personaje {
     public abstract int modificarDanioAtaque(int danioBase);
 
     public abstract int modificarCuracion(int curacionBase);
+
+    public abstract int modificarDefensa(int defensaBase);
 }

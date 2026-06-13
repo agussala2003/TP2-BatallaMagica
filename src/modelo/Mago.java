@@ -15,4 +15,9 @@ public abstract class Mago extends Personaje {
     public int modificarCuracion(int curacionBase) {
         return curacionBase + getNivelMagia() * 2;
     }
+
+    @Override
+    public int modificarDefensa(int defensaBase) {
+        return defensaBase + getNivelMagia() * 2;
+    }
 }
