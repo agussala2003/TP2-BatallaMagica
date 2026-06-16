@@ -29,7 +29,7 @@ public class Batallon {
         historialHechizos.put(personaje.getNombre(), new ArrayList<>());
     }
 
-    public boolean tienePersonajesVivos() {
+    public boolean tienePersonajesSaludables() {
         for (Personaje personaje : personajes) {
             if (personaje.estaVivo()) {
                 return true;
