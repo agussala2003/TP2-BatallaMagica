@@ -1,7 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import efectosProlongados.EfectoProlongado;
 import hechizos.Hechizo;
 
 public abstract class Personaje {
@@ -10,9 +14,8 @@ public abstract class Personaje {
     private int puntosVida;
     private int vidaMaxima;
     private int defensa;
-	private boolean sangrando;
-	private int danioSangrado;
     private List<Hechizo> hechizos;
+    private Set<EfectoProlongado> efectosProlongados;
 
     public Personaje(String nombre, int nivelMagia, int puntosVida) {
         this.nombre = nombre;
@@ -21,8 +24,7 @@ public abstract class Personaje {
         this.vidaMaxima = puntosVida;
         this.defensa = 0;
         this.hechizos = new ArrayList<>();
-		this.sangrando = false;
-		this.danioSangrado = 0;
+        this.efectosProlongados = new HashSet<>();
     }
 
     public String getNombre() {
@@ -35,6 +37,26 @@ public abstract class Personaje {
 
     public int getPuntosVida() {
         return puntosVida;
+    }
+    
+    public boolean agregarEfectoProlongado(EfectoProlongado efecto) {
+    	return efectosProlongados.add(efecto);
+    }
+    
+    public void quitarPuntosVida(int danio) {
+    	puntosVida -= danio;
+    	
+    	if (puntosVida < 0) {
+            puntosVida = 0;
+        }
+    }
+    
+    public void agregarPuntosVida(int puntos) {
+    	puntosVida += puntos;
+    	
+        if (puntosVida > vidaMaxima) {
+            puntosVida = vidaMaxima;
+        }   	
     }
 
     public int getDefensa() {
@@ -57,39 +79,23 @@ public abstract class Personaje {
         defensa += cantidad;
         System.out.println(nombre + " aumenta su defensa en " + cantidad + ". Defensa actual: " + defensa);
     }
-	
-	public void aplicarSangrado(int danio) {
-    sangrando = true;
-    danioSangrado = danio;
-
-    System.out.println(nombre + " comienza a sangrar.");
-	}
 
 	public void procesarEfectos() {
-    if (sangrando && estaVivo()) {
-        puntosVida -= danioSangrado;
-
-        if (puntosVida < 0) {
-            puntosVida = 0;
-        }
-
-        System.out.println(nombre + " sufre " + danioSangrado +
-                " de daño por sangrado. Vida actual: " + puntosVida);
-    }
+		for (EfectoProlongado efecto : efectosProlongados) {
+			efecto.aplicar(this);
+		}
+		
+		efectosProlongados.removeIf(e -> !e.estaActivo());
 	}
 
     public void recibirDanio(int danio) {
         int danioFinal = danio - defensa;
-
+        
         if (danioFinal < 0) {
             danioFinal = 0;
         }
 
-        puntosVida -= danioFinal;
-
-        if (puntosVida < 0) {
-            puntosVida = 0;
-        }
+        quitarPuntosVida(danioFinal);
 
         defensa = 0;
 
@@ -97,11 +103,7 @@ public abstract class Personaje {
     }
 
     public void curar(int cantidad) {
-        puntosVida += cantidad;
-
-        if (puntosVida > vidaMaxima) {
-            puntosVida = vidaMaxima;
-        }
+        agregarPuntosVida(cantidad);
 
         System.out.println(nombre + " recupera " + cantidad + " de vida. Vida actual: " + puntosVida);
     }

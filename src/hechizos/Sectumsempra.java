@@ -1,9 +1,9 @@
 package hechizos;
 
+import efectosProlongados.Sangrado;
 import modelo.Personaje;
 
 public class Sectumsempra implements Hechizo {
-
     @Override
     public String getNombre() {
         return "Sectumsempra";
@@ -20,6 +20,6 @@ public class Sectumsempra implements Hechizo {
 
         objetivo.recibirDanio(danio);
 
-        objetivo.aplicarSangrado(10);
+        objetivo.agregarEfectoProlongado(new Sangrado(3, 10));
     }
 }

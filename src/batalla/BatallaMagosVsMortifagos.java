@@ -3,6 +3,7 @@ package batalla;
 import java.util.Random;
 
 import fabricas.Reclutador;
+import modelo.Personaje;
 
 public class BatallaMagosVsMortifagos {
 
@@ -17,7 +18,19 @@ public class BatallaMagosVsMortifagos {
         }
 
         System.out.println("=== COMIENZA LA BATALLA ===\n");
-
+        
+        System.out.println("=== Magos ===\n");
+        for (Personaje personaje : batallonMagos.getPersonajes()) {
+        	System.out.println(personaje.getNombre());
+        }
+        System.out.println("\n");
+        
+        System.out.println("=== Mortifagos ===\n");
+        for (Personaje personaje : batallonMortifagos.getPersonajes()) {
+        	System.out.println(personaje.getNombre());
+        }
+        System.out.println("\n");
+        
         Random rand = new Random();
 
         while (batallonMagos.tienePersonajesSaludables() && batallonMortifagos.tienePersonajesSaludables()) {
