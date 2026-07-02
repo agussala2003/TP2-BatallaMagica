@@ -22,13 +22,21 @@ public class BatallaMagosVsMortifagos {
         
         System.out.println("=== Magos ===\n");
         for (Personaje personaje : batallonMagos.getPersonajes()) {
-        	System.out.println(personaje.getNombre());
+        	System.out.println(personaje.getNombre() +
+        			". Clase: " + personaje.getClass().toString().substring(13) +
+        			". Vida: " + personaje.getPuntosVida() +
+        			". Defensa: " + personaje.getDefensa() +
+        			". Magia: " + personaje.getNivelMagia());
         }
         System.out.println("");
         
         System.out.println("=== Mortifagos ===\n");
         for (Personaje personaje : batallonMortifagos.getPersonajes()) {
-        	System.out.println(personaje.getNombre());
+        	System.out.println(personaje.getNombre() +
+        			". Clase: " + personaje.getClass().toString().substring(13) +
+        			". Vida: " + personaje.getPuntosVida() +
+        			". Defensa: " + personaje.getDefensa() +
+        			". Magia: " + personaje.getNivelMagia());
         }
         System.out.println("");
         
