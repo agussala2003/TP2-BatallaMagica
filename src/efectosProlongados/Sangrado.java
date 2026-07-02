@@ -5,15 +5,15 @@ import modelo.Personaje;
 public class Sangrado extends EfectoProlongado {
 	private int danioSangrado;
 	
-	public Sangrado(int rondasRestantes, int danioSangrado) {
-		super(rondasRestantes);
+	public Sangrado(int turnosRestantes, int danioSangrado) {
+		super(turnosRestantes);
 		this.danioSangrado = danioSangrado;
 	}
 	
 	protected void efectos(Personaje objetivo) {
-		String textoTiempoRestante = getRondasRestantes() >= 0 ?
-				"El efecto termina en " + String.valueOf(getRondasRestantes()) + " ronda" +
-					(getRondasRestantes() > 1 ? "s" : ".") :
+		String textoTiempoRestante = getTurnosRestantes() >= 0 ?
+				"El efecto termina en " + String.valueOf(getTurnosRestantes()) + " turno" +
+					(getTurnosRestantes() > 1 ? "s" : ".") :
 					"El efecto durará toda la batalla.";
 		
     	objetivo.quitarPuntosVida(danioSangrado);

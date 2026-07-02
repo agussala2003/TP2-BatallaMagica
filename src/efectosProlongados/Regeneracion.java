@@ -5,15 +5,15 @@ import modelo.Personaje;
 public class Regeneracion extends EfectoProlongado {
 	private int puntosRegeneracion;
 	
-	public Regeneracion(int rondasRestantes, int puntosRegeneracion) {
-		super(rondasRestantes);
+	public Regeneracion(int turnosRestantes, int puntosRegeneracion) {
+		super(turnosRestantes);
 		this.puntosRegeneracion = puntosRegeneracion;
 	}
 	
 	protected void efectos(Personaje objetivo) {
-		String textoTiempoRestante = getRondasRestantes() >= 0 ?
-			"El efecto termina en " + String.valueOf(getRondasRestantes()) + " ronda" +
-			(getRondasRestantes() > 1 ? "s" : ".") :
+		String textoTiempoRestante = getTurnosRestantes() >= 0 ?
+			"El efecto termina en " + String.valueOf(getTurnosRestantes()) + " turno" +
+			(getTurnosRestantes() > 1 ? "s" : ".") :
 			"El efecto durará toda la batalla.";
 				
     	objetivo.agregarPuntosVida(puntosRegeneracion);
