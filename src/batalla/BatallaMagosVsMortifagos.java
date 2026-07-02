@@ -11,6 +11,7 @@ public class BatallaMagosVsMortifagos {
 
         Batallon batallonMagos = new Batallon();
         Batallon batallonMortifagos = new Batallon();
+        Batallon ganador;
 
         for (int i = 0; i < 3; i++) {
             batallonMagos.agregarPersonaje(Reclutador.crearMago());
@@ -23,13 +24,13 @@ public class BatallaMagosVsMortifagos {
         for (Personaje personaje : batallonMagos.getPersonajes()) {
         	System.out.println(personaje.getNombre());
         }
-        System.out.println("\n");
+        System.out.println("");
         
         System.out.println("=== Mortifagos ===\n");
         for (Personaje personaje : batallonMortifagos.getPersonajes()) {
         	System.out.println(personaje.getNombre());
         }
-        System.out.println("\n");
+        System.out.println("");
         
         Random rand = new Random();
 
@@ -58,9 +59,16 @@ public class BatallaMagosVsMortifagos {
         System.out.println();
 
         if (batallonMagos.tienePersonajesSaludables()) {
+        	ganador = batallonMagos;
             System.out.println("¡Los magos han ganado la batalla!");
         } else {
+        	ganador = batallonMortifagos;
             System.out.println("¡Los mortífagos han ganado la batalla!");
+        }
+        
+        System.out.println("\nPersonajes sobrevivientes:");
+        for(Personaje personaje : ganador.getPersonajes()) {
+        	System.out.println(personaje.getNombre() + ": " + personaje.getPuntosVida() + " puntos de vida.");
         }
     }
 }
