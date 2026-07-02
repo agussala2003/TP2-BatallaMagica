@@ -13,6 +13,6 @@ public class Auror extends Mago {
 
     @Override
     public int modificarDefensa(int defensaBase) {
-        return super.modificarDefensa(defensaBase) + 8;
+        return super.modificarDefensa(defensaBase) + 10;
     }
 }

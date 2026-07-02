@@ -8,16 +8,16 @@ public abstract class Mago extends Personaje {
 
     @Override
     public int modificarDanioAtaque(int danioBase) {
-        return danioBase + getNivelMagia();
+        return danioBase + getNivelMagia() * 2;
     }
 
     @Override
     public int modificarCuracion(int curacionBase) {
-        return curacionBase + getNivelMagia() * 2;
+        return curacionBase + getNivelMagia() * 3;
     }
 
     @Override
     public int modificarDefensa(int defensaBase) {
-        return defensaBase + getNivelMagia() * 2;
+        return defensaBase + getNivelMagia() * 3;
     }
 }

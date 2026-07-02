@@ -45,15 +45,15 @@ public class BatallaMagosVsMortifagos {
         while (batallonMagos.tienePersonajesSaludables() && batallonMortifagos.tienePersonajesSaludables()) {
 
             if (rand.nextBoolean()) {
-                batallonMagos.atacar(batallonMortifagos);
-                if (batallonMortifagos.tienePersonajesSaludables()) {
-                    batallonMortifagos.atacar(batallonMagos);
-                }
-            } else {
                 batallonMortifagos.atacar(batallonMagos);
                 if (batallonMagos.tienePersonajesSaludables()) {
-                    batallonMagos.atacar(batallonMortifagos);
+                	batallonMagos.atacar(batallonMortifagos);
                 }
+            } else {
+            	batallonMagos.atacar(batallonMortifagos);
+            	if (batallonMortifagos.tienePersonajesSaludables()) {
+            		batallonMortifagos.atacar(batallonMagos);
+            	}
             }
 
             System.out.println("----------------------------");
@@ -76,7 +76,9 @@ public class BatallaMagosVsMortifagos {
         
         System.out.println("\nPersonajes sobrevivientes:");
         for(Personaje personaje : ganador.getPersonajes()) {
-        	System.out.println(personaje.getNombre() + ": " + personaje.getPuntosVida() + " puntos de vida.");
+            if(personaje.estaVivo()) {
+                System.out.println(personaje.getNombre() + ": " + personaje.getPuntosVida() + " puntos de vida.");
+            }
         }
     }
 }

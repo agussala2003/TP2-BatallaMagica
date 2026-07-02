@@ -85,13 +85,19 @@ public class Batallon {
     private Hechizo elegirHechizo(Personaje personaje) {
         List<Hechizo> hechizosDisponibles = new ArrayList<>();
 
+        boolean hasSuficienteVida = personaje.getPuntosVida() >= personaje.getVidaMaxima() * 0.7;
+
         for (Hechizo hechizo : personaje.getHechizos()) {
             String clave = personaje.getNombre() + "-" + hechizo.getNombre();
 
             if (!hechizosUsadosEnRonda.contains(clave)) {
-                hechizosDisponibles.add(hechizo);
+	            if (hasSuficienteVida && hechizo.getNombre().equals("Expecto Patronum")) {
+	                continue;
+	            }
+	            hechizosDisponibles.add(hechizo);
             }
         }
+        
 
         if (hechizosDisponibles.isEmpty()) {
             hechizosUsadosEnRonda.clear();

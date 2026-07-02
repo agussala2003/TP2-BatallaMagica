@@ -3,12 +3,12 @@ package modelo;
 public class Estudiante extends Mago {
 
     public Estudiante(String nombre) {
-        super(nombre, 4, 90);
+        super(nombre, 5, 100);
     }
 
     @Override
     public int modificarDanioAtaque(int danioBase) {
-        return super.modificarDanioAtaque(danioBase) - 5;
+        return super.modificarDanioAtaque(danioBase);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class Estudiante extends Mago {
 
     @Override
     public int modificarDefensa(int defensaBase) {
-        return super.modificarDefensa(defensaBase) - 5;
+        return super.modificarDefensa(defensaBase) + 5;
     }
 }

@@ -7,12 +7,7 @@ public class Seguidor extends Mortifago {
     }
 
     @Override
-    public int modificarDanioAtaque(int danioBase) {
-        return super.modificarDanioAtaque(danioBase) + 5;
-    }
-
-    @Override
     public int modificarDefensa(int defensaBase) {
-        return super.modificarDefensa(defensaBase) - 3;
+        return super.modificarDefensa(defensaBase) - 5;
     }
 }

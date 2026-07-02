@@ -17,6 +17,6 @@ public class Protego implements Hechizo {
         System.out.println(lanzador.getNombre() + " usa Protego");
         lanzador.aumentarDefensa(defensa);
         
-        objetivo.agregarEfectoProlongado(new Regeneracion(-1, 10));
+        lanzador.agregarEfectoProlongado(new Regeneracion(-1, 10));
     }
 }

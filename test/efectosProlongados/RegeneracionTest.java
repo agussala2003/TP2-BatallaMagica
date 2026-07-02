@@ -27,7 +27,7 @@ public class RegeneracionTest {
     public void regeneracion() {
         int puntosVida;
         new AvadaKedavra().ejecutar(comandante, estudiante);
-        new Protego().ejecutar(auror, estudiante);
+        new Protego().ejecutar(estudiante, comandante);
         
         puntosVida = estudiante.getPuntosVida();
         

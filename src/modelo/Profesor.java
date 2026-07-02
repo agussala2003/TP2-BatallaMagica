@@ -13,6 +13,6 @@ public class Profesor extends Mago {
 
     @Override
     public int modificarDefensa(int defensaBase) {
-        return super.modificarDefensa(defensaBase) + 12;
+        return super.modificarDefensa(defensaBase) + 10;
     }
 }

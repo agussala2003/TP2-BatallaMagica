@@ -63,6 +63,10 @@ public abstract class Personaje {
         return defensa;
     }
 
+    public int getVidaMaxima() {
+        return vidaMaxima;
+    }
+
     public boolean estaVivo() {
         return puntosVida > 0;
     }
@@ -97,7 +101,7 @@ public abstract class Personaje {
 
         quitarPuntosVida(danioFinal);
 
-        defensa = 0;
+        defensa = Math.max(0, danioFinal);
 
         System.out.println(nombre + " recibe " + danioFinal + " de daño. Vida actual: " + puntosVida);
     }
