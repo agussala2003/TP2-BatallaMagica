@@ -12,8 +12,9 @@ public class Sangrado extends EfectoProlongado {
 	
 	protected void efectos(Personaje objetivo) {
 		String textoTiempoRestante = getRondasRestantes() >= 0 ?
-				"El efecto termina en " + String.valueOf(getRondasRestantes()) + " rondas." :
-				"El efecto durará toda la batalla.";
+				"El efecto termina en " + String.valueOf(getRondasRestantes()) + " ronda" +
+					(getRondasRestantes() > 1 ? "s" : ".") :
+					"El efecto durará toda la batalla.";
 		
     	objetivo.quitarPuntosVida(danioSangrado);
 	
