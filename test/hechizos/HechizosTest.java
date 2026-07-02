@@ -128,7 +128,6 @@ public class HechizosTest {
 
     @Test
     public void sectumsempraAplicaSangrado() {
-        int vidaAntes = auror.getPuntosVida();
         new Sectumsempra().ejecutar(comandante, auror);
         int vidaTrasDanio = auror.getPuntosVida();
 

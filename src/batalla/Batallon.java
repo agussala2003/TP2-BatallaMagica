@@ -116,4 +116,8 @@ public class Batallon {
             System.out.println(personaje + ": " + historialHechizos.get(personaje));
         }
     }
+    
+    public List<Personaje> getPersonajes() {
+    	return personajes;
+    }
 }

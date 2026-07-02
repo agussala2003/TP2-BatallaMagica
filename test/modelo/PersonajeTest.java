@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import efectosProlongados.Sangrado;
 import hechizos.Expelliarmus;
 
 public class PersonajeTest {
@@ -46,8 +47,10 @@ public class PersonajeTest {
     @Test
     public void defensaAbsorbeParteDanio() {
         int vidaInicial = auror.getPuntosVida();
+        System.out.println("Hola: " + vidaInicial);
         auror.aumentarDefensa(30);
         auror.recibirDanio(10);
+        System.out.println("Hola: " + auror.getPuntosVida());
         // defensa (30) > daño (10) → no recibe nada
         assertEquals(vidaInicial, auror.getPuntosVida());
     }
@@ -76,8 +79,8 @@ public class PersonajeTest {
 
     @Test
     public void sangradoReduceVidaEnProcesarEfectos() {
-        auror.aplicarSangrado(10);
         int vidaAntes = auror.getPuntosVida();
+        auror.agregarEfectoProlongado(new Sangrado(10, 10));
         auror.procesarEfectos();
         assertEquals(vidaAntes - 10, auror.getPuntosVida());
     }
