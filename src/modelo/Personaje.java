@@ -93,15 +93,11 @@ public abstract class Personaje {
 	}
 
     public void recibirDanio(int danio) {
-        int danioFinal = danio - defensa;
-        
-        if (danioFinal < 0) {
-            danioFinal = 0;
-        }
+        int danioAbsorbido = Math.min(defensa, danio);
+        defensa -= danioAbsorbido;
 
+        int danioFinal = danio - danioAbsorbido;
         quitarPuntosVida(danioFinal);
-
-        defensa = Math.max(0, danioFinal);
 
         System.out.println(nombre + " recibe " + danioFinal + " de daño. Vida actual: " + puntosVida);
     }
