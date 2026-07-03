@@ -29,7 +29,7 @@ public class Batallon {
         historialHechizos.put(personaje.getNombre(), new ArrayList<>());
     }
 
-    public boolean tienePersonajesVivos() {
+    public boolean tienePersonajesSaludables() {
         for (Personaje personaje : personajes) {
             if (personaje.estaVivo()) {
                 return true;
@@ -85,13 +85,19 @@ public class Batallon {
     private Hechizo elegirHechizo(Personaje personaje) {
         List<Hechizo> hechizosDisponibles = new ArrayList<>();
 
+        boolean hasSuficienteVida = personaje.getPuntosVida() >= personaje.getVidaMaxima() * 0.7;
+
         for (Hechizo hechizo : personaje.getHechizos()) {
             String clave = personaje.getNombre() + "-" + hechizo.getNombre();
 
             if (!hechizosUsadosEnRonda.contains(clave)) {
-                hechizosDisponibles.add(hechizo);
+	            if (hasSuficienteVida && hechizo.getNombre().equals("Expecto Patronum")) {
+	                continue;
+	            }
+	            hechizosDisponibles.add(hechizo);
             }
         }
+        
 
         if (hechizosDisponibles.isEmpty()) {
             hechizosUsadosEnRonda.clear();
@@ -115,5 +121,9 @@ public class Batallon {
         for (String personaje : historialHechizos.keySet()) {
             System.out.println(personaje + ": " + historialHechizos.get(personaje));
         }
+    }
+    
+    public List<Personaje> getPersonajes() {
+    	return personajes;
     }
 }

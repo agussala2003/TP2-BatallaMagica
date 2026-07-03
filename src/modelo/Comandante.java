@@ -3,12 +3,12 @@ package modelo;
 public class Comandante extends Mortifago {
 
     public Comandante(String nombre) {
-        super(nombre, 9, 130);
+        super(nombre, 8, 120);
     }
 
     @Override
     public int modificarDanioAtaque(int danioBase) {
-        return super.modificarDanioAtaque(danioBase) + 15;
+        return super.modificarDanioAtaque(danioBase) + 10;
     }
 
     @Override

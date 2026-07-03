@@ -8,7 +8,7 @@ public abstract class Mortifago extends Personaje {
 
     @Override
     public int modificarDanioAtaque(int danioBase) {
-        return danioBase + getNivelMagia() * 2;
+        return danioBase + getNivelMagia() * 3;
     }
 
     @Override
