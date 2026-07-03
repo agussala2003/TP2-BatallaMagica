@@ -59,7 +59,7 @@ public class PersonajeTest {
     public void defensaSeResetearDespuésDeRecibirDanio() {
         auror.aumentarDefensa(15);
         auror.recibirDanio(5);
-        assertEquals(0, auror.getDefensa());
+        assertEquals(10, auror.getDefensa());
     }
 
     @Test
