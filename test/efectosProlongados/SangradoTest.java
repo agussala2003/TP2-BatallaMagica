@@ -31,4 +31,28 @@ public class SangradoTest {
         
         assertEquals(comandante.getPuntosVida(), puntosVida - 30);
     }
+
+    @Test
+    public void sangradoMultiplosTurnos() {
+        int puntosVidaInicial = comandante.getPuntosVida();
+        new Sectumsempra().ejecutar(auror, comandante);
+        
+        for(int i = 0; i < 10; i++)
+            comandante.procesarEfectos();
+        
+        assertEquals(comandante.getPuntosVida(), puntosVidaInicial - 91);
+    }
+
+    @Test
+    public void sangradoTurnosInfinitosMenoUno() {
+        int puntosVidaInicial = comandante.getPuntosVida();
+        Sangrado sangrado = new Sangrado(-1, 7);
+        comandante.agregarEfectoProlongado(sangrado);
+        
+        for(int i = 0; i < 20; i++)
+            comandante.procesarEfectos();
+        
+        assertEquals(comandante.getPuntosVida(), 0);
+    }
+
 }
