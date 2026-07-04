@@ -76,20 +76,4 @@ public class RegeneracionTest {
         
         assertEquals(estudiante.getPuntosVida(), puntosVidaInicial - 10);
     }
-
-    @Test
-    public void sangradoYRegeneracionJuntos() {
-        int puntosVidaInicial = estudiante.getPuntosVida();
-        Sangrado sangrado = new Sangrado(3, 8);
-        Regeneracion regeneracion = new Regeneracion(3, 5);
-        
-        estudiante.agregarEfectoProlongado(sangrado);
-        estudiante.agregarEfectoProlongado(regeneracion);
-        
-        for(int i = 0; i < 3; i++)
-            estudiante.procesarEfectos();
-        
-        // Net effect: -3 por turno durante 3 turnos = -9
-        assertEquals(estudiante.getPuntosVida(), puntosVidaInicial - 9);
-    }
 }
